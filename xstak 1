@@ -1,0 +1,64 @@
+#include <iostream>
+#include <ctime>
+#include <wchar.h>
+#include <Windows.h>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <string.h>
+#include <stdlib.h>
+#include <cstring>
+#include <conio.h>
+#include <iomanip>
+#include <process.h>
+#include <Windows.h>
+#include <time.h>
+#include <ctime>
+#include <cstdlib>
+#include <typeinfo>
+#include <fstream>
+
+
+using namespace std;
+const int MAX = 3;
+
+class Stack {
+private:
+    int st[MAX];
+    int top;
+public:
+    class Range
+    {};
+    Stack() {
+        top = -1;
+    }
+    void push(int var) {
+        if (top >= MAX - 1)
+            throw Range();
+        st[++top] = var;
+    }
+    int pop() {
+        if (top < 0)
+            throw Range();
+        return st[top--];
+    }
+};
+
+
+int main() {
+    Stack s1;
+
+    try {
+        s1.push(11);
+        s1.push(22);
+        s1.push(33);
+        cout << "1: " << s1.pop() << endl;
+        cout << "2: " << s1.pop() << endl;
+        cout << "3: " << s1.pop() << endl;
+    }
+    catch (Stack::Range) {
+        cout << "\nStack is full or empty";
+    }
+
+    return 0;
+}
